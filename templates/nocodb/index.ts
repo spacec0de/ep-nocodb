@@ -1,16 +1,28 @@
-import { Output, randomPassword, Services } from "~templates-utils";
+import { Output, randomString, randomPassword, Services } from "~templates-utils";
 import { Input } from "./meta";
 
 export function generate(input: Input): Output {
   const services: Services = [];
-  const databasePassword = randomPassword();
+  const passwordPostgres = randomPassword();
+  const passwordRedis = randomPassword();
+  const jwtSecret = randomString(32);
 
   services.push({
     type: "postgres",
     data: {
       projectName: input.projectName,
       serviceName: input.databaseServiceName,
-      password: databasePassword,
+      image: "postgres:15",
+      password: passwordPostgres,
+    },
+  });
+
+  services.push({
+    type: "redis",
+    data: {
+      projectName: input.projectName,
+      serviceName: input.redisServiceName,
+      password: passwordRedis,
     },
   });
 
@@ -23,9 +35,12 @@ export function generate(input: Input): Output {
         type: "image",
         image: input.appServiceImage,
       },
-      proxy: { port: 8080, secure: false },
+      proxy: { port: 8080, secure: true },
       env: [
-        `NC_DB=postgres://postgres:${databasePassword}@${input.projectName}_${input.databaseServiceName}:5432/${input.projectName}`,
+        `DATABASE_URL=postgres://postgres:${passwordPostgres}@${input.projectName}_${input.databaseServiceName}:5432/${input.projectName}`,
+        `NC_REDIS_URL=redis://default:${passwordRedis}@${input.projectName}_${input.redisServiceName}:6379`,
+        `NC_AUTH_JWT_SECRET=${jwtSecret}`,
+        `NC_PUBLIC_URL=https://${input.domain}`,
       ].join("\n"),
       mounts: [
         {

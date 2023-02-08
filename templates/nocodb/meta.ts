@@ -19,13 +19,14 @@ export const meta = {
     type: "object",
     required: [
       "projectName",
-      "domain",
       "appServiceName",
       "appServiceImage",
       "databaseServiceName",
+      "redisServiceName",
     ],
     properties: {
       projectName: { type: "string", title: "Project Name" },
+      domain: { type: "string", title: "Domain" },
       appServiceName: {
         type: "string",
         title: "App Service Name",
@@ -41,6 +42,11 @@ export const meta = {
         title: "Database Service Name",
         default: "nocodb-db",
       },
+      redisServiceName: {
+        type: "string",
+        title: "Redis Service Name",
+        default: "nocodb-redis",
+      },
     },
   },
   logo: "logo.png",
@@ -48,13 +54,17 @@ export const meta = {
 };
 
 export type ProjectName = string;
+export type Domain = string;
 export type AppServiceName = string;
 export type AppServiceImage = string;
 export type DatabaseServiceName = string;
+export type RedisServiceName = string;
 
 export interface Input {
   projectName: ProjectName;
+  domain?: Domain;
   appServiceName: AppServiceName;
   appServiceImage: AppServiceImage;
   databaseServiceName: DatabaseServiceName;
+  redisServiceName: RedisServiceName;
 }

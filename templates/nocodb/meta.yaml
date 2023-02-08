@@ -18,14 +18,17 @@ schema:
   type: object
   required:
     - projectName
-    - domain
     - appServiceName
     - appServiceImage
     - databaseServiceName
+    - redisServiceName
   properties:
     projectName:
       type: string
       title: Project Name
+    domain:
+      type: string
+      title: Domain
     appServiceName:
       type: string
       title: App Service Name
@@ -38,3 +41,7 @@ schema:
       type: string
       title: Database Service Name
       default: nocodb-db
+    redisServiceName:
+      type: string
+      title: Redis Service Name
+      default: nocodb-redis
