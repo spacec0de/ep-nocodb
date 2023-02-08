@@ -1,25 +1,19 @@
-name: Bookstack
-description: BookStack is a simple, self-hosted, easy-to-use platform for
-  organising and storing information. The content in BookStack is fully
-  searchable. You are able to search at book level or across all books, chapters
-  & pages. BookStack is built using PHP, on top of the Laravel framework and it
-  uses MySQL to store data.
+name: NocoDB
+description: NocoDB is an open source Airtable alternative and no code platform that turns any database into a smart spreadsheet.
 instructions: null
 changeLog:
-  - date: 2022-07-12
+  - date: 2023-02-8
     description: first release
 links:
   - label: Website
-    url: https://www.bookstackapp.com/
+    url: https://www.nocodb.com/
   - label: Documentation
-    url: https://www.bookstackapp.com/docs/
+    url: https://docs.nocodb.com/getting-started/installation/
   - label: Github
-    url: https://github.com/BookStackApp/BookStack
+    url: https://github.com/nocodb/nocodb
 contributors:
-  - name: Ponkhy
-    url: https://github.com/Ponkhy
-  - name: Andrei Canta
-    url: https://github.com/deiucanta
+  - name: spacec0de
+    url: https://github.com/spacec0de
 schema:
   type: object
   required:
@@ -32,18 +26,15 @@ schema:
     projectName:
       type: string
       title: Project Name
-    domain:
-      type: string
-      title: Domain
     appServiceName:
       type: string
       title: App Service Name
-      default: bookstack
+      default: nocodb
     appServiceImage:
       type: string
       title: App Service Image
-      default: lscr.io/linuxserver/bookstack:22.09.1
+      default: nocodb/nocodb:0.104.3
     databaseServiceName:
       type: string
       title: Database Service Name
-      default: bookstack-db
+      default: nocodb-db
