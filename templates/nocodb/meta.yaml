@@ -12,7 +12,7 @@ links:
   - label: Github
     url: https://github.com/nocodb/nocodb
 contributors:
-  - name: spacec0de
+  - name: spaceb0t
     url: https://github.com/spacec0de
 schema:
   type: object
