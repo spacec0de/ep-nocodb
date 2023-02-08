@@ -8,7 +8,6 @@ import { Input } from "./meta";
 export function generate(input: Input): Output {
   const services: Services = [];
   const databasePassword = randomPassword();
-  const coreSecret = randomString();
 
   services.push({
     type: "postgres",
